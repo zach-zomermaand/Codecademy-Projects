@@ -1,3 +1,52 @@
+-- Count of countries in Africa
+SELECT COUNT(name) AS 'Countries in Africa'
+FROM countries
+WHERE continent = 'Africa';
+
+-- Total population of all countries in Oceania in 2005
+SELECT 
+	c.continent,
+	p.year,
+	SUM(p.population) AS 'Total Population'
+FROM countries c
+JOIN population_years p
+	ON c.id = p.country_id
+WHERE c.continent = 'Oceania' AND p.year = '2005';
+
+-- Average population of countries in South America in 2003, rounded to 2 decimal places
+SELECT 
+	c.continent,
+	p.year,
+	ROUND(AVG(p.population),2) AS 'Average Population'
+FROM countries c
+JOIN population_years p
+	ON c.id = p.country_id
+WHERE c.continent = 'South America' AND p.year = '2003';
+
+-- Country with smallest population in 2007
+SELECT 
+	c.name,
+	p.year,
+	MIN(p.population) AS 'Population'
+FROM countries c
+JOIN population_years p
+	ON c.id = p.country_id
+WHERE p.year = '2007';
+
+-- Average population of Poland in dataset, rounded to 2 decimal places
+SELECT 
+	c.name,
+	ROUND(AVG(p.population),2)
+FROM countries c
+JOIN population_years p
+	ON c.id = p.country_id
+WHERE c.name = 'Poland';
+
+--Countries with "The" in their name
+SELECT COUNT(name)
+FROM countries
+WHERE name LIKE '%The%';
+
 -- Total population of each continent in 2010
 SELECT 
 	c.continent,
