@@ -1,0 +1,10 @@
+-- Total population of each continent in 2010
+SELECT 
+	c.continent,
+	p.year,
+	SUM(p.population) AS 'Population'
+FROM countries c
+JOIN population_years p
+	ON c.id = p.country_id
+WHERE p.year = '2010'
+GROUP BY c.continent;
